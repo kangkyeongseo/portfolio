@@ -4,15 +4,18 @@ import { motion } from "framer-motion";
 
 const Container = styled.div``;
 
-const Text = styled.span`
+const Text = styled.div`
   font-size: 42px;
+  white-space: pre-wrap;
 `;
 
 const Bar = styled(motion.span)`
   display: inline-block;
   width: 3px;
   height: 40px;
+  margin-left: 7px;
   background-color: #000000;
+  transform: translateY(3px);
 `;
 
 const barVars = {
@@ -21,94 +24,75 @@ const barVars = {
     opacity: 1,
     transition: {
       repeat: Infinity,
-      duration: 0.8,
+      duration: 0.6,
     },
   },
 };
 
 const Typing = () => {
-  const text = [
-    { text: "안녕하세요.", lineBreak: false },
-    { text: "다양한 시도를 통해", lineBreak: true },
-    { text: "개발자와 사용자에게 ", lineBreak: true },
-    { text: "프론트앤드 개발자", lineBreak: true },
+  const textArray = [
+    "안녕하세요",
+    "다양한 시도를 통해 \n지식을 쌓아가며",
+    "개발자와 사용자에게 \n최적의 경험을 전달하고 싶은",
+    "프론트앤드 개발자 \n강경서입니다.",
   ];
-  const textSecond = [
-    "지식을 쌓아가며",
-    "최적의 경험을 전달하고 싶은",
-    "강경서 입니다.",
-  ];
+
   const [intro, setIntro] = useState("");
-  const [introSecond, setIntroSecond] = useState("");
   const [order, setOrder] = useState(0);
-  const [orderSecond, setOrderSecond] = useState(0);
-  const [lineBreak, setLineBreak] = useState(false);
+  const [show, setShow] = useState(true);
+  let event: NodeJS.Timeout;
 
-  const typing = (textArray: any, textIntro: string, textOrder: number) => {
-    switch (lineBreak) {
-      case false:
-        if (textIntro.length < textArray[textOrder].text.length) {
-          setIntro(textArray[textOrder].text.slice(0, textIntro.length + 1));
-        } else if (
-          textArray.length !== textOrder + 1 &&
-          !textArray[textOrder].lineBreak
-        ) {
-          setIntro("");
-          setOrder((pre) => pre + 1);
-        } else if (textArray[textOrder].lineBreak) {
-          setLineBreak(true);
-          setOrder((pre) => pre + 1);
-        } else {
-        }
-        break;
-      case true:
-        if (textIntro.length < textArray[textOrder].length) {
-          setIntroSecond(textArray[textOrder].slice(0, textIntro.length + 1));
-        } else if (text.length !== order) {
-          setLineBreak(false);
-          setIntro("");
-          setIntroSecond("");
-          setOrderSecond((pre) => pre + 1);
-        } else {
-        }
-
-        break;
+  const typing = (text: string, start: number, increase: boolean) => {
+    if (increase && start - 1 === text.length) {
+      return Promise.resolve();
     }
+    if (!increase && start === 0) {
+      return Promise.resolve();
+    }
+    return new Promise((resolve, reject) => {
+      event = setTimeout(
+        () => {
+          start = increase ? start + 1 : start - 1;
+          setIntro(text.slice(0, start));
+          resolve(typing(text, start, increase));
+        },
+        increase ? 100 : 50
+      );
+    });
+  };
+
+  const typingText = () => {
+    typing(textArray[order], 0, true).then(() => {
+      setTimeout(() => {
+        setShow(false);
+      }, 1000);
+    });
+  };
+
+  const deletText = () => {
+    typing(textArray[order], textArray[order].length, false).then(() => {
+      setOrder((pre) => (pre + 1) % textArray.length);
+      setShow(true);
+    });
   };
 
   useEffect(() => {
-    if (lineBreak) return;
-    if (order === text.length) return;
-    console.log(order, text.length);
-    const interval = setInterval(
-      () => typing(text, intro, order),
-      intro.length === text[order].text.length && !text[order].lineBreak
-        ? 1000
-        : 100
-    );
-    return () => clearInterval(interval);
-  }, [lineBreak, intro]);
-
-  useEffect(() => {
-    if (lineBreak) {
-      const interval = setInterval(
-        () => typing(textSecond, introSecond, orderSecond),
-        introSecond.length === textSecond[orderSecond].length ? 1000 : 100
-      );
-      return () => clearInterval(interval);
+    if (show) {
+      typingText();
+    } else {
+      deletText();
     }
-  }, [lineBreak, introSecond]);
+    return () => {
+      if (event) clearTimeout(event);
+    };
+  }, [show]);
 
   return (
     <Container>
-      <Text>{intro}</Text>
-      {introSecond.length > 0 ? (
-        <>
-          <br />
-          <Text>{introSecond}</Text>
-        </>
-      ) : null}
-      <Bar variants={barVars} initial="start" animate="end" />
+      <Text>
+        {intro}
+        <Bar variants={barVars} initial="start" animate="end" />
+      </Text>
     </Container>
   );
 };
