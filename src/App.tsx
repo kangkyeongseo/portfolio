@@ -15,26 +15,35 @@ function App() {
 
   const scroll = (e: WheelEvent) => {
     e.preventDefault();
+    console.log(e.pageY, window.innerHeight);
     switch (order) {
       case 1:
         if (e.deltaY > 0) {
           centerContainer.current?.scrollIntoView({ behavior: "smooth" });
-          setOrder(2);
+          setTimeout(() => {
+            setOrder(2);
+          }, 1000);
         }
         break;
       case 2:
         if (e.deltaY > 0) {
           footerContainer.current?.scrollIntoView({ behavior: "smooth" });
-          setOrder(3);
+          setTimeout(() => {
+            setOrder(3);
+          }, 1000);
         } else {
           headerContainer.current?.scrollIntoView({ behavior: "smooth" });
-          setOrder(1);
+          setTimeout(() => {
+            setOrder(1);
+          }, 1000);
         }
         break;
       case 3:
         if (e.deltaY < 0) {
           centerContainer.current?.scrollIntoView({ behavior: "smooth" });
-          setOrder(2);
+          setTimeout(() => {
+            setOrder(2);
+          }, 1000);
         }
         break;
     }
