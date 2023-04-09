@@ -3,6 +3,14 @@ import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 
+const NavContainer = styled.div`
+  display: flex;
+  position: fixed;
+  top: 0;
+`;
+
+const Column = styled.div``;
+
 const Container = styled.div`
   height: 100vh;
 `;
@@ -15,7 +23,6 @@ function App() {
 
   const scroll = (e: WheelEvent) => {
     e.preventDefault();
-    console.log(e.pageY, window.innerHeight);
     switch (order) {
       case 1:
         if (e.deltaY > 0) {
@@ -54,17 +61,34 @@ function App() {
     return () => window.removeEventListener("wheel", scroll);
   }, [order]);
 
+  const onClick = (state: string) => {
+    switch (state) {
+      case "Header":
+        headerContainer.current?.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "Center":
+        centerContainer.current?.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "Footer":
+        footerContainer.current?.scrollIntoView({ behavior: "smooth" });
+        break;
+    }
+  };
+
   return (
     <div>
+      <NavContainer>
+        <Column onClick={() => onClick("Header")}>Header</Column>
+        <Column onClick={() => onClick("Center")}>Center</Column>
+        <Column onClick={() => onClick("Footer")}>Footer</Column>
+      </NavContainer>
       <Container ref={headerContainer}>
         <Header />
       </Container>
       <Container ref={centerContainer}>
-        {" "}
         <Header />
       </Container>
       <Container ref={footerContainer}>
-        {" "}
         <Header />
       </Container>
     </div>
