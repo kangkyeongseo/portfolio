@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
+import Profile from "./components/Profile";
 
 const NavContainer = styled.div`
   display: flex;
@@ -9,7 +10,9 @@ const NavContainer = styled.div`
   top: 0;
 `;
 
-const Column = styled.div``;
+const Column = styled.div`
+  cursor: pointer;
+`;
 
 const Container = styled.div`
   height: 100vh;
@@ -86,7 +89,7 @@ function App() {
         <Header />
       </Container>
       <Container ref={centerContainer}>
-        <Header />
+        <Profile order={order} />
       </Container>
       <Container ref={footerContainer}>
         <Header />
