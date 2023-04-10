@@ -32,7 +32,7 @@ function App() {
           centerContainer.current?.scrollIntoView({ behavior: "smooth" });
           setTimeout(() => {
             setOrder(2);
-          }, 1000);
+          }, 500);
         }
         break;
       case 2:
@@ -40,12 +40,12 @@ function App() {
           footerContainer.current?.scrollIntoView({ behavior: "smooth" });
           setTimeout(() => {
             setOrder(3);
-          }, 1000);
+          }, 500);
         } else {
           headerContainer.current?.scrollIntoView({ behavior: "smooth" });
           setTimeout(() => {
             setOrder(1);
-          }, 1000);
+          }, 500);
         }
         break;
       case 3:
@@ -53,13 +53,14 @@ function App() {
           centerContainer.current?.scrollIntoView({ behavior: "smooth" });
           setTimeout(() => {
             setOrder(2);
-          }, 1000);
+          }, 500);
         }
         break;
     }
   };
 
   useEffect(() => {
+    console.log(order);
     window.addEventListener("wheel", scroll, { passive: false });
     return () => window.removeEventListener("wheel", scroll);
   }, [order]);
@@ -79,7 +80,7 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <NavContainer>
         <Column onClick={() => onClick("Header")}>Header</Column>
         <Column onClick={() => onClick("Center")}>Center</Column>
@@ -94,7 +95,7 @@ function App() {
       <Container ref={footerContainer}>
         <Header />
       </Container>
-    </div>
+    </>
   );
 }
 

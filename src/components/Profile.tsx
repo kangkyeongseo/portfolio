@@ -1,3 +1,11 @@
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCalendar,
+  faEnvelope,
+  faPhone,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
@@ -26,16 +34,22 @@ const SubTitle = styled.h3`
 
 const Intro = styled.p`
   font-size: 18px;
-  margin-bottom: 50px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  line-height: 22px;
+  margin-bottom: 30px;
 `;
 
 const Item = styled.div`
-  font-size: 16px;
   margin-bottom: 10px;
 `;
 
+const Text = styled.span`
+  margin-left: 5px;
+`;
+
 const Box = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 `;
 
 const Skills = styled.div`
@@ -43,11 +57,12 @@ const Skills = styled.div`
   margin-bottom: 5px;
 `;
 
-const Skill = styled.div`
+const Skill = styled.div<{ color: string }>`
   padding: 5px 7px;
   margin-right: 7px;
   border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  background-color: ${(props) => props.color};
 `;
 
 interface Prop {
@@ -55,8 +70,16 @@ interface Prop {
 }
 
 const Profile = ({ order }: Prop) => {
+  const containerVars = {
+    start: { y: 200, opacity: 0 },
+    end: {
+      y: order === 2 ? 0 : 200,
+      opacity: order === 2 ? 1 : 0,
+      transition: { type: "Tween", duration: 0.5 },
+    },
+  };
   return (
-    <Container>
+    <Container variants={containerVars} initial="start" animate="end">
       <Column>
         <Title>Profile</Title>
         <Intro>
@@ -81,53 +104,68 @@ const Profile = ({ order }: Prop) => {
           <br />
           프론트엔드 개발자를 지향하고 있습니다.
         </Intro>
-        <Item>강경서</Item>
-        <Item>1994.07.18</Item>
-        <Item>010-6415-5062</Item>
-        <Item>kks_big@naver.com</Item>
-        <Item>Github</Item>
+        <Item>
+          <FontAwesomeIcon icon={faUserAlt} color="#333333" />
+          <Text>강경서</Text>
+        </Item>
+        <Item>
+          <FontAwesomeIcon icon={faCalendar} color="#333333" />
+          <Text>1994.07.18</Text>
+        </Item>
+        <Item>
+          <FontAwesomeIcon icon={faPhone} color="#333333" />
+          <Text>010-6415-5062</Text>
+        </Item>
+        <Item>
+          <FontAwesomeIcon icon={faEnvelope} color="#333333" />
+          <Text>kks_big@naver.com</Text>
+        </Item>
+        <Item>
+          <FontAwesomeIcon icon={faGithub} color="#333333" />
+          <Text>Github</Text>
+        </Item>
       </Column>
       <Column>
         <Title>Skills</Title>
         <Box>
           <SubTitle>Frontend</SubTitle>
           <Skills>
-            <Skill>HTML</Skill>
-            <Skill>CSS</Skill>
-            <Skill>Javascript</Skill>
+            <Skill color="#E76F51">HTML</Skill>
+            <Skill color="#0077b6">CSS</Skill>
+            <Skill color="#ffb703">Javascript</Skill>
           </Skills>
           <Skills>
-            <Skill>TypeScript</Skill>
-            <Skill>React</Skill>
-            <Skill>Next</Skill>
+            <Skill color="#0096c7">TypeScript</Skill>
+            <Skill color="#48cae4">React</Skill>
+            <Skill color="#333333">Next</Skill>
           </Skills>
           <Skills>
-            <Skill>Recoil</Skill>
-            <Skill>Tailwind CSS ...</Skill>
+            <Skill color="#0077b6">Recoil</Skill>
+            <Skill color="#2a9d8f">Tailwind CSS ...</Skill>
           </Skills>
         </Box>
         <Box>
           <SubTitle>Backend</SubTitle>
           <Skills>
-            <Skill>Node.js</Skill>
-            <Skill>Express</Skill>
+            <Skill color="#6a994e">Node.js</Skill>
+            <Skill color="#333333">Express</Skill>
           </Skills>
           <Skills>
-            <Skill>MongoDB</Skill>
-            <Skill>Firebase</Skill>
+            <Skill color="#386641">MongoDB</Skill>
+            <Skill color="#FB8500">Firebase...</Skill>
           </Skills>
         </Box>
         <Box>
           <SubTitle>Mobile</SubTitle>
           <Skills>
-            <Skill>React Native</Skill>
+            <Skill color="#48cae4">React Native</Skill>
           </Skills>
         </Box>
         <Box>
           <SubTitle>Design</SubTitle>
           <Skills>
-            <Skill>Ps</Skill>
-            <Skill>Ai</Skill>
+            <Skill color="#0077b6">Ps</Skill>
+            <Skill color="#ffb703">Ai</Skill>
           </Skills>
         </Box>
       </Column>
