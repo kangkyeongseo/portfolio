@@ -75,7 +75,7 @@ const Profile = ({ order }: Prop) => {
     end: {
       y: order === 2 ? 0 : 200,
       opacity: order === 2 ? 1 : 0,
-      transition: { type: "Tween", duration: 0.5 },
+      transition: { type: "Tween", duration: 0.7 },
     },
   };
   return (
