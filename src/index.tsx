@@ -48,7 +48,7 @@ table {
 }
 * {
   box-sizing: border-box;
-  overflow: hidden;
+ 
 }
 `;
 
