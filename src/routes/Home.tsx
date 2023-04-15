@@ -6,6 +6,7 @@ import Project from "../components/Project";
 import Profile from "../components/Profile";
 
 const NavContainer = styled.div`
+  z-index: 2;
   position: fixed;
   top: 0;
   width: 100%;
@@ -63,14 +64,14 @@ const Home = () => {
           setOrder(3);
           setTimeout(() => {
             setLoading(false);
-          }, 500);
+          }, 1000);
         } else {
           headerContainer.current?.scrollIntoView({ behavior: "smooth" });
           setLoading(true);
           setOrder(1);
           setTimeout(() => {
             setLoading(false);
-          }, 500);
+          }, 1000);
         }
         break;
       case 3:
@@ -80,7 +81,7 @@ const Home = () => {
           setOrder(2);
           setTimeout(() => {
             setLoading(false);
-          }, 500);
+          }, 1000);
         }
         break;
     }
