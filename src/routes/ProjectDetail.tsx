@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -121,6 +122,9 @@ const ProjectDetail = () => {
       backend: ["유저 회원가입 및 로그인", "카페 좋아요 생성 및 삭제"],
     },
   };
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
   return (
     <Container>
       <Header>
@@ -147,7 +151,7 @@ const ProjectDetail = () => {
               <Text>프론트엔드</Text>
               <Skills>
                 {project.skills.prontend.map((skill) => (
-                  <Skill>{skill}</Skill>
+                  <Skill key={skill}>{skill}</Skill>
                 ))}
               </Skills>
             </SkillContainer>
@@ -155,7 +159,7 @@ const ProjectDetail = () => {
               <Text>백엔드</Text>
               <Skills>
                 {project.skills.backend.map((skill) => (
-                  <Skill>{skill}</Skill>
+                  <Skill key={skill}>{skill}</Skill>
                 ))}
               </Skills>
             </SkillContainer>
@@ -169,7 +173,7 @@ const ProjectDetail = () => {
               <Text>프론트엔드</Text>
               <Parts>
                 {project.part.protend.map((part) => (
-                  <Part>{part}</Part>
+                  <Part key={part}>{part}</Part>
                 ))}
               </Parts>
             </SkillContainer>
@@ -177,7 +181,7 @@ const ProjectDetail = () => {
               <Text>백엔드</Text>
               <Parts>
                 {project.part.backend.map((part) => (
-                  <Part>{part}</Part>
+                  <Part key={part}>{part}</Part>
                 ))}
               </Parts>
             </SkillContainer>

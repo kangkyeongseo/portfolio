@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Project from "../components/Project";
 import Profile from "../components/Profile";
+import { Link, useLocation } from "react-router-dom";
 
 const NavContainer = styled.div`
   z-index: 2;
@@ -34,6 +35,10 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   gap: 20px;
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `;
 
 const Home = () => {
@@ -42,10 +47,13 @@ const Home = () => {
   const footerContainer = useRef<HTMLDivElement>(null);
   const [order, setOrder] = useState(1);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+
+  console.log(location.pathname);
 
   const scroll = (e: WheelEvent) => {
-    if (loading) return;
     e.preventDefault();
+    if (loading) return;
     switch (order) {
       case 1:
         if (e.deltaY > 0) {
@@ -111,10 +119,16 @@ const Home = () => {
       transition: { type: "spring", bounce: 0.1 },
     },
   };
+
   useEffect(() => {
-    window.addEventListener("wheel", scroll, { passive: false });
-    return () => window.removeEventListener("wheel", scroll);
+    document.body.addEventListener("wheel", scroll, { passive: false });
+    return () => document.body.removeEventListener("wheel", scroll);
   }, [loading]);
+
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
       <NavContainer>
@@ -130,9 +144,15 @@ const Home = () => {
         <Profile order={order} />
       </Container>
       <Container ref={footerContainer}>
-        <Project />
-        <Project />
-        <Project />
+        <Link to="/project">
+          <Project />
+        </Link>
+        <Link to="/project">
+          <Project />
+        </Link>
+        <Link to="/project">
+          <Project />
+        </Link>
       </Container>
     </>
   );
