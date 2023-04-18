@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import Project from "../components/Project";
 import Profile from "../components/Profile";
 import { Link, useLocation } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { orderState } from "../atom";
 
 const NavContainer = styled.div`
   z-index: 2;
@@ -45,11 +47,8 @@ const Home = () => {
   const headerContainer = useRef<HTMLDivElement>(null);
   const centerContainer = useRef<HTMLDivElement>(null);
   const footerContainer = useRef<HTMLDivElement>(null);
-  const [order, setOrder] = useState(1);
+  const [order, setOrder] = useRecoilState(orderState);
   const [loading, setLoading] = useState(false);
-  const location = useLocation();
-
-  console.log(location.pathname);
 
   const scroll = (e: WheelEvent) => {
     e.preventDefault();
@@ -124,10 +123,6 @@ const Home = () => {
     document.body.addEventListener("wheel", scroll, { passive: false });
     return () => document.body.removeEventListener("wheel", scroll);
   }, [loading]);
-
-  useEffect(() => {
-    window.scroll(0, 0);
-  }, [location.pathname]);
 
   return (
     <>
