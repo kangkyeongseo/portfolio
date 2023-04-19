@@ -124,6 +124,20 @@ const Home = () => {
     return () => document.body.removeEventListener("wheel", scroll);
   }, [loading]);
 
+  useEffect(() => {
+    switch (order) {
+      case 1:
+        headerContainer.current?.scrollIntoView();
+        break;
+      case 2:
+        centerContainer.current?.scrollIntoView();
+        break;
+      case 3:
+        footerContainer.current?.scrollIntoView();
+        break;
+    }
+  }, []);
+
   return (
     <>
       <NavContainer>

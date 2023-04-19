@@ -13,6 +13,7 @@ const Container = styled.div`
 const Img = styled.div`
   width: 100%;
   background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 30px 30px 0px 0px;
 `;
 
 const Content = styled.div`
