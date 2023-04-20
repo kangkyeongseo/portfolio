@@ -1,11 +1,13 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
   faCaretLeft,
+  faCaretRight,
   faCircleChevronLeft,
   faTableColumns,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -70,17 +72,52 @@ const Description = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.2);
 `;
 
-const Imgs = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+const SlideContainer = styled.div`
+  position: relative;
+  padding: 0px 40px;
 `;
 
-const Img = styled.div`
-  width: 100%;
+const Slide = styled.div`
+  overflow: hidden;
+`;
+
+const Imgs = styled(motion.div)`
+  display: flex;
+  gap: 20px;
+  height: 220px;
+  padding: 20px;
+`;
+
+const Img = styled(motion.div)`
   aspect-ratio: 16/9;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 1);
   border-radius: 10px;
+`;
+
+const BigImg = styled(motion.div)`
+  position: fixed;
+  top: 100px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 1200px;
+  aspect-ratio: 16/9;
+  background-color: rgba(0, 0, 0, 1);
+  border-radius: 10px;
+`;
+
+const Left = styled.div`
+  position: absolute;
+  left: 0;
+  top: 35%;
+  font-size: 38px;
+`;
+
+const Right = styled.div`
+  position: absolute;
+  right: 0;
+  top: 35%;
+  font-size: 38px;
 `;
 
 const LinkContainer = styled.div`
@@ -172,12 +209,32 @@ const ProjectDetail = () => {
     },
   };
   const navigate = useNavigate();
+  const [slide, setSlide] = useState(0);
+  const [click, setClick] = useState(false);
   const onBackBtnClick = () => {
     navigate("/");
   };
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const imgsVars = {
+    start: {},
+    end: { x: slide },
+  };
+
+  const onLeftBtn = () => {
+    if (slide === 0) return;
+    setSlide((pre) => pre + 360);
+  };
+
+  const onRightBtn = () => {
+    setSlide((pre) => pre - 360);
+  };
+
+  const onClick = () => {
+    setClick((pre) => !pre);
+  };
 
   return (
     <Container>
@@ -191,11 +248,28 @@ const ProjectDetail = () => {
         <Point color="#0077b6">해당 프로젝트는...</Point>
         <Description>{project.description}</Description>
       </Row>
+      {click ? <BigImg layoutId="test" onClick={onClick} /> : null}
       <Row space="30px">
-        <Imgs>
-          <Img />
-          <Img />
-        </Imgs>
+        <SlideContainer>
+          <Slide>
+            <Imgs variants={imgsVars} initial="start" animate="end">
+              <Img
+                whileHover={{ scale: 1.1 }}
+                layoutId="test"
+                onClick={onClick}
+              />
+              <Img whileHover={{ scale: 1.1 }} />
+              <Img whileHover={{ scale: 1.1 }} />
+              <Img whileHover={{ scale: 1.1 }} />
+            </Imgs>
+            <Left onClick={onLeftBtn}>
+              <FontAwesomeIcon icon={faCaretLeft} />
+            </Left>
+            <Right onClick={onRightBtn}>
+              <FontAwesomeIcon icon={faCaretRight} />
+            </Right>
+          </Slide>
+        </SlideContainer>
       </Row>
       <Row space="50px">
         <Point color="#386641">경험해보세요!</Point>
