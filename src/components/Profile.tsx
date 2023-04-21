@@ -10,29 +10,43 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const Container = styled(motion.div)`
-  height: 100%;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    align-items: flex-start;
+  }
+  width: 100%;
   display: grid;
-  align-content: center;
   grid-template-columns: 3fr 1fr;
-  max-width: 800px;
-  margin: 0 auto;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Column = styled.div``;
 
 const Title = styled.h2`
+  @media screen and (max-width: 767px) {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
   font-size: 32px;
   font-weight: bold;
   margin-bottom: 50px;
 `;
 
 const SubTitle = styled.h3`
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+  }
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
 `;
 
 const Intro = styled.p`
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -40,15 +54,26 @@ const Intro = styled.p`
   margin-bottom: 30px;
 `;
 
+const Items = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
 const Item = styled.div`
-  margin-bottom: 10px;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
 `;
 
 const Text = styled.span`
-  margin-left: 5px;
+  margin-left: 10px;
 `;
 
 const Box = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-bottom: 10px;
+  }
   margin-bottom: 30px;
 `;
 
@@ -58,6 +83,11 @@ const Skills = styled.div`
 `;
 
 const Skill = styled.div<{ color: string }>`
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    padding: 3px 5px;
+    margin-right: 5px;
+  }
   padding: 5px 7px;
   margin-right: 7px;
   border-radius: 5px;
@@ -104,26 +134,28 @@ const Profile = ({ order }: Prop) => {
           <br />
           프론트엔드 개발자를 지향하고 있습니다.
         </Intro>
-        <Item>
-          <FontAwesomeIcon icon={faUserAlt} color="#333333" />
-          <Text>강경서</Text>
-        </Item>
-        <Item>
-          <FontAwesomeIcon icon={faCalendar} color="#333333" />
-          <Text>1994.07.18</Text>
-        </Item>
-        <Item>
-          <FontAwesomeIcon icon={faPhone} color="#333333" />
-          <Text>010-6415-5062</Text>
-        </Item>
-        <Item>
-          <FontAwesomeIcon icon={faEnvelope} color="#333333" />
-          <Text>kks_big@naver.com</Text>
-        </Item>
-        <Item>
-          <FontAwesomeIcon icon={faGithub} color="#333333" />
-          <Text>Github</Text>
-        </Item>
+        <Items>
+          <Item>
+            <FontAwesomeIcon icon={faUserAlt} color="#333333" />
+            <Text>강경서</Text>
+          </Item>
+          <Item>
+            <FontAwesomeIcon icon={faCalendar} color="#333333" />
+            <Text>1994.07.18</Text>
+          </Item>
+          <Item>
+            <FontAwesomeIcon icon={faPhone} color="#333333" />
+            <Text>010-6415-5062</Text>
+          </Item>
+          <Item>
+            <FontAwesomeIcon icon={faEnvelope} color="#333333" />
+            <Text>kks_big@naver.com</Text>
+          </Item>
+          <Item>
+            <FontAwesomeIcon icon={faGithub} color="#333333" />
+            <Text>Github</Text>
+          </Item>
+        </Items>
       </Column>
       <Column>
         <Title>Skills</Title>

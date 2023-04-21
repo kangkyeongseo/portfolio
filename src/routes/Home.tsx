@@ -8,6 +8,20 @@ import { Link, useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { orderState } from "../atom";
 
+const MainContainer = styled.div`
+  margin: 0 auto;
+  padding: 0px 20px;
+  @media screen and (min-width: 1024px) {
+    max-width: 860px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    max-width: 760px;
+  }
+  @media screen and (max-width: 767px) {
+    max-width: 600px;
+  }
+`;
+
 const NavContainer = styled.div`
   z-index: 2;
   position: fixed;
@@ -41,6 +55,16 @@ const Container = styled.div`
     text-decoration: none;
     color: inherit;
   }
+`;
+
+const Profiles = styled.div`
+  @media screen and (max-width: 767px) {
+    display: flex;
+    overflow: scroll;
+  }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 `;
 
 const Home = () => {
@@ -146,23 +170,30 @@ const Home = () => {
         <Column onClick={() => onClick("Footer")}>Footer</Column>
         <Nav variants={navVars} initial="start" animate="end" />
       </NavContainer>
-      <Container ref={headerContainer}>
-        <Header />
-      </Container>
-      <Container ref={centerContainer}>
-        <Profile order={order} />
-      </Container>
-      <Container ref={footerContainer}>
-        <Link to="/project">
-          <Project />
-        </Link>
-        <Link to="/project">
-          <Project />
-        </Link>
-        <Link to="/project">
-          <Project />
-        </Link>
-      </Container>
+      <MainContainer>
+        <Container ref={headerContainer}>
+          <Header />
+        </Container>
+        <Container ref={centerContainer}>
+          <Profile order={order} />
+        </Container>
+        <Container ref={footerContainer}>
+          <Profiles>
+            <Link to="/project">
+              <Project />
+            </Link>
+            <Link to="/project">
+              <Project />
+            </Link>
+            <Link to="/project">
+              <Project />
+            </Link>
+            <Link to="/project">
+              <Project />
+            </Link>
+          </Profiles>
+        </Container>
+      </MainContainer>
     </>
   );
 };

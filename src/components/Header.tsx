@@ -1,13 +1,7 @@
 import styled from "styled-components";
 import Typing from "./Typing";
 
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+const Container = styled.div``;
 
 const Header = () => {
   return (

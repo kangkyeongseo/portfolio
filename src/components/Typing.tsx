@@ -5,11 +5,18 @@ import { motion } from "framer-motion";
 const Container = styled.div``;
 
 const Text = styled.div`
+  @media screen and (max-width: 767px) {
+    font-size: 24px;
+  }
   font-size: 42px;
   white-space: pre-wrap;
 `;
 
 const Bar = styled(motion.span)`
+  @media screen and (max-width: 767px) {
+    width: 2px;
+    height: 24px;
+  }
   display: inline-block;
   width: 3px;
   height: 40px;
@@ -32,9 +39,9 @@ const barVars = {
 const Typing = () => {
   const textArray = [
     "안녕하세요",
-    "다양한 시도를 통해 \n지식을 쌓아가며",
-    "개발자와 사용자에게 \n최적의 경험을 전달하고 싶은",
-    "프론트엔드 개발자 \n강경서입니다.",
+    "다양한 시도를 통해\n지식을 쌓아가며",
+    "개발자와 사용자에게 최적의\n경험을 전달하고 싶은",
+    "프론트엔드 개발자\n강경서입니다.",
   ];
 
   const [intro, setIntro] = useState("");

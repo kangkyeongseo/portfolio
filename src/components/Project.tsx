@@ -1,10 +1,18 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+  @media screen and (min-width: 1024px) {
+    max-width: 400px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    max-width: 350px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 300px;
+  }
   display: grid;
-  grid-template-rows: 5fr 4fr;
-  width: 400px;
-  height: 450px;
+  grid-template-rows: 2fr 1fr;
+  aspect-ratio: 1/1;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 8px;
@@ -21,14 +29,18 @@ const Content = styled.div`
 `;
 
 const Title = styled.h3`
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const Description = styled.p`
-  font-size: 15px;
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+  font-size: 14px;
   font-weight: 300;
   line-height: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 const Skills = styled.div`
@@ -37,6 +49,13 @@ const Skills = styled.div`
 `;
 
 const Skill = styled.div<{ color: string }>`
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    padding: 3px 5px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+  }
+  font-size: 14px;
   padding: 5px 7px;
   margin-right: 7px;
   margin-bottom: 5px;
