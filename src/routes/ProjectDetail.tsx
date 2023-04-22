@@ -18,6 +18,9 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
   display: flex;
   align-items: center;
   margin-left: 5px;
@@ -25,6 +28,10 @@ const Header = styled.div`
 `;
 
 const BackBtn = styled.button`
+  @media screen and (max-width: 767px) {
+    font-size: 24px;
+    margin-right: 5px;
+  }
   cursor: pointer;
   margin-right: 10px;
   border: none;
@@ -36,11 +43,17 @@ const BackBtn = styled.button`
 `;
 
 const Title = styled.div`
+  @media screen and (max-width: 767px) {
+    font-size: 24px;
+  }
   font-size: 42px;
   font-weight: bold;
 `;
 
 const SubTitle = styled.div`
+  @media screen and (max-width: 767px) {
+    font-size: 18px;
+  }
   font-size: 26px;
   margin-bottom: 20px;
   padding-bottom: 15px;
@@ -48,10 +61,17 @@ const SubTitle = styled.div`
 `;
 
 const Item = styled.div`
+  @media screen and (max-width: 767px) {
+    font-size: 15px;
+  }
   font-size: 18px;
 `;
 
 const Point = styled.span<{ color: string }>`
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
   display: inline-block;
   padding: 7px 15px;
   font-size: 14px;
@@ -61,6 +81,9 @@ const Point = styled.span<{ color: string }>`
 `;
 
 const Row = styled.div<{ space: string }>`
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
   margin-bottom: ${(props) => props.space};
 `;
 
@@ -82,6 +105,9 @@ const Slide = styled.div`
 `;
 
 const Imgs = styled(motion.div)`
+  @media screen and (max-width: 767px) {
+    height: 150px;
+  }
   display: flex;
   gap: 20px;
   height: 220px;
@@ -121,6 +147,9 @@ const Right = styled.div`
 `;
 
 const LinkContainer = styled.div`
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
@@ -175,6 +204,9 @@ const Parts = styled.div`
 `;
 
 const Part = styled.span`
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+  }
   opacity: 0.7;
 `;
 
