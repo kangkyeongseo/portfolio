@@ -12,16 +12,16 @@ import styled from "styled-components";
 const Container = styled(motion.div)`
   @media screen and (max-width: 767px) {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
   }
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  align-items: center;
+  align-items: flex-start;
   gap: 10px;
 `;
 
-const Column = styled.div``;
+const Box = styled.div``;
 
 const Title = styled.h2`
   @media screen and (max-width: 767px) {
@@ -51,7 +51,6 @@ const Intro = styled.p`
   font-weight: 300;
   letter-spacing: 1px;
   line-height: 22px;
-  margin-bottom: 30px;
 `;
 
 const Items = styled.div`
@@ -70,11 +69,18 @@ const Text = styled.span`
   margin-left: 10px;
 `;
 
-const Box = styled.div`
+const Rows = styled.div`
+  @media screen and (max-width: 767px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+const Row = styled.div`
   @media screen and (max-width: 767px) {
     margin-bottom: 10px;
   }
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const Skills = styled.div`
@@ -110,7 +116,7 @@ const Profile = ({ order }: Prop) => {
   };
   return (
     <Container variants={containerVars} initial="start" animate="end">
-      <Column>
+      <Box>
         <Title>Profile</Title>
         <Intro>
           안녕하세요.
@@ -134,6 +140,54 @@ const Profile = ({ order }: Prop) => {
           <br />
           프론트엔드 개발자를 지향하고 있습니다.
         </Intro>
+      </Box>
+      <Box>
+        <Title>Skills</Title>
+        <Rows>
+          <Row>
+            <SubTitle>Frontend</SubTitle>
+            <Skills>
+              <Skill color="#E76F51">HTML</Skill>
+              <Skill color="#0077b6">CSS</Skill>
+              <Skill color="#ffb703">Javascript</Skill>
+            </Skills>
+            <Skills>
+              <Skill color="#0096c7">TypeScript</Skill>
+              <Skill color="#48cae4">React</Skill>
+              <Skill color="#333333">Next</Skill>
+            </Skills>
+            <Skills>
+              <Skill color="#0077b6">Recoil</Skill>
+              <Skill color="#2a9d8f">Tailwind CSS ...</Skill>
+            </Skills>
+          </Row>
+          <Row>
+            <SubTitle>Backend</SubTitle>
+            <Skills>
+              <Skill color="#6a994e">Node.js</Skill>
+              <Skill color="#333333">Express</Skill>
+            </Skills>
+            <Skills>
+              <Skill color="#386641">MongoDB</Skill>
+              <Skill color="#FB8500">Firebase...</Skill>
+            </Skills>
+          </Row>
+          <Row>
+            <SubTitle>Mobile</SubTitle>
+            <Skills>
+              <Skill color="#48cae4">React Native</Skill>
+            </Skills>
+          </Row>
+          <Row>
+            <SubTitle>Design</SubTitle>
+            <Skills>
+              <Skill color="#0077b6">Ps</Skill>
+              <Skill color="#ffb703">Ai</Skill>
+            </Skills>
+          </Row>
+        </Rows>
+      </Box>
+      <Box>
         <Items>
           <Item>
             <FontAwesomeIcon icon={faUserAlt} color="#333333" />
@@ -156,51 +210,7 @@ const Profile = ({ order }: Prop) => {
             <Text>Github</Text>
           </Item>
         </Items>
-      </Column>
-      <Column>
-        <Title>Skills</Title>
-        <Box>
-          <SubTitle>Frontend</SubTitle>
-          <Skills>
-            <Skill color="#E76F51">HTML</Skill>
-            <Skill color="#0077b6">CSS</Skill>
-            <Skill color="#ffb703">Javascript</Skill>
-          </Skills>
-          <Skills>
-            <Skill color="#0096c7">TypeScript</Skill>
-            <Skill color="#48cae4">React</Skill>
-            <Skill color="#333333">Next</Skill>
-          </Skills>
-          <Skills>
-            <Skill color="#0077b6">Recoil</Skill>
-            <Skill color="#2a9d8f">Tailwind CSS ...</Skill>
-          </Skills>
-        </Box>
-        <Box>
-          <SubTitle>Backend</SubTitle>
-          <Skills>
-            <Skill color="#6a994e">Node.js</Skill>
-            <Skill color="#333333">Express</Skill>
-          </Skills>
-          <Skills>
-            <Skill color="#386641">MongoDB</Skill>
-            <Skill color="#FB8500">Firebase...</Skill>
-          </Skills>
-        </Box>
-        <Box>
-          <SubTitle>Mobile</SubTitle>
-          <Skills>
-            <Skill color="#48cae4">React Native</Skill>
-          </Skills>
-        </Box>
-        <Box>
-          <SubTitle>Design</SubTitle>
-          <Skills>
-            <Skill color="#0077b6">Ps</Skill>
-            <Skill color="#ffb703">Ai</Skill>
-          </Skills>
-        </Box>
-      </Column>
+      </Box>
     </Container>
   );
 };
