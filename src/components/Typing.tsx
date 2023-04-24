@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const Container = styled.div``;
 
 const Text = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 24px;
   }
   font-size: 42px;
@@ -13,10 +13,11 @@ const Text = styled.div`
 `;
 
 const Bar = styled(motion.span)`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     width: 2px;
     height: 24px;
   }
+
   display: inline-block;
   width: 3px;
   height: 40px;

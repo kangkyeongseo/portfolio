@@ -10,10 +10,11 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 const Container = styled(motion.div)`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     display: flex;
     flex-direction: column;
   }
+
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -24,7 +25,7 @@ const Container = styled(motion.div)`
 const Box = styled.div``;
 
 const Title = styled.h2`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 20px;
     margin-bottom: 10px;
   }
@@ -34,7 +35,7 @@ const Title = styled.h2`
 `;
 
 const SubTitle = styled.h3`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 15px;
   }
   font-size: 18px;
@@ -43,7 +44,7 @@ const SubTitle = styled.h3`
 `;
 
 const Intro = styled.p`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
     line-height: 14px;
   }
@@ -60,7 +61,7 @@ const Items = styled.div`
 `;
 
 const Item = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
   }
 `;
@@ -70,15 +71,15 @@ const Text = styled.span`
 `;
 
 const Rows = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 `;
 
 const Row = styled.div`
-  @media screen and (max-width: 767px) {
-    margin-bottom: 10px;
+  @media ${(props) => props.theme.media.mobile} {
+    mask-border: 10px;
   }
   margin-bottom: 20px;
 `;
@@ -89,7 +90,7 @@ const Skills = styled.div`
 `;
 
 const Skill = styled.div<{ color: string }>`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
     padding: 3px 5px;
     margin-right: 5px;

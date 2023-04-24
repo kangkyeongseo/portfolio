@@ -11,13 +11,13 @@ import { orderState } from "../atom";
 const MainContainer = styled.div`
   margin: 0 auto;
   padding: 0px 20px;
-  @media screen and (min-width: 1024px) {
+  @media ${(props) => props.theme.media.desktop} {
     max-width: 860px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
+  @media ${(props) => props.theme.media.tablet} {
     max-width: 760px;
   }
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     max-width: 600px;
   }
 `;
@@ -58,7 +58,7 @@ const Container = styled.div`
 `;
 
 const Profiles = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     display: flex;
     overflow: scroll;
   }

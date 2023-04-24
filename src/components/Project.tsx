@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  @media screen and (min-width: 1024px) {
+  @media ${(props) => props.theme.media.desktop} {
     max-width: 400px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
+  @media ${(props) => props.theme.media.tablet} {
     max-width: 350px;
   }
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     width: 300px;
   }
   display: grid;
@@ -33,7 +33,7 @@ const Title = styled.h3`
 `;
 
 const Description = styled.p`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
     line-height: 14px;
   }
@@ -49,7 +49,7 @@ const Skills = styled.div`
 `;
 
 const Skill = styled.div<{ color: string }>`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
     padding: 3px 5px;
     margin-right: 5px;

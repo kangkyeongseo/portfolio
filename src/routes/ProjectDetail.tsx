@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     margin-bottom: 20px;
   }
   display: flex;
@@ -28,7 +28,7 @@ const Header = styled.div`
 `;
 
 const BackBtn = styled.button`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 24px;
     margin-right: 5px;
   }
@@ -43,7 +43,7 @@ const BackBtn = styled.button`
 `;
 
 const Title = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 24px;
   }
   font-size: 42px;
@@ -51,7 +51,7 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 18px;
   }
   font-size: 26px;
@@ -61,14 +61,14 @@ const SubTitle = styled.div`
 `;
 
 const Item = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 15px;
   }
   font-size: 18px;
 `;
 
 const Point = styled.span<{ color: string }>`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
     padding: 5px 10px;
   }
@@ -81,7 +81,7 @@ const Point = styled.span<{ color: string }>`
 `;
 
 const Row = styled.div<{ space: string }>`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     margin-bottom: 20px;
   }
   margin-bottom: ${(props) => props.space};
@@ -105,7 +105,7 @@ const Slide = styled.div`
 `;
 
 const Imgs = styled(motion.div)`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     height: 150px;
   }
   display: flex;
@@ -147,7 +147,7 @@ const Right = styled.div`
 `;
 
 const LinkContainer = styled.div`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
   }
   display: grid;
@@ -204,7 +204,7 @@ const Parts = styled.div`
 `;
 
 const Part = styled.span`
-  @media screen and (max-width: 767px) {
+  @media ${(props) => props.theme.media.mobile} {
     font-size: 12px;
   }
   opacity: 0.7;
