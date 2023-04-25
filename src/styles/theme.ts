@@ -6,8 +6,12 @@ const sizes = {
 
 const media = {
   desktop: `screen and (min-width:${sizes.desktop}px)`,
-  tablet: `screen and (min-width:${sizes.tablet}px) and (max-width:${sizes.desktop}px)`,
-  mobile: `screen and (min-width:${sizes.mobile}px) and (max-width:${sizes.tablet}px)`,
+  tablet: `screen and (min-width:${sizes.tablet}px) and (max-width:${
+    sizes.desktop - 1
+  }px)`,
+  mobile: `screen and (min-width:${sizes.mobile}px) and (max-width:${
+    sizes.tablet - 1
+  }px)`,
 };
 
 const theme = {

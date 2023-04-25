@@ -34,13 +34,15 @@ const NavContainer = styled.div`
 `;
 
 const Column = styled.div`
+  width: 25%;
+  text-align: center;
   cursor: pointer;
 `;
 
 const Nav = styled(motion.div)`
   position: absolute;
   bottom: 0%;
-  width: calc(100% / 3);
+  width: calc(100% / 4);
   height: 3px;
   background-color: #000000;
 `;
@@ -69,8 +71,9 @@ const Profiles = styled.div`
 
 const Home = () => {
   const headerContainer = useRef<HTMLDivElement>(null);
-  const centerContainer = useRef<HTMLDivElement>(null);
-  const footerContainer = useRef<HTMLDivElement>(null);
+  const profileContainer = useRef<HTMLDivElement>(null);
+  const skillContainer = useRef<HTMLDivElement>(null);
+  const projectContainer = useRef<HTMLDivElement>(null);
   const [order, setOrder] = useRecoilState(orderState);
   const [loading, setLoading] = useState(false);
 
@@ -80,7 +83,7 @@ const Home = () => {
     switch (order) {
       case 1:
         if (e.deltaY > 0) {
-          centerContainer.current?.scrollIntoView({ behavior: "smooth" });
+          profileContainer.current?.scrollIntoView({ behavior: "smooth" });
           setLoading(true);
           setOrder(2);
           setTimeout(() => {
@@ -90,7 +93,7 @@ const Home = () => {
         break;
       case 2:
         if (e.deltaY > 0) {
-          footerContainer.current?.scrollIntoView({ behavior: "smooth" });
+          skillContainer.current?.scrollIntoView({ behavior: "smooth" });
           setLoading(true);
           setOrder(3);
           setTimeout(() => {
@@ -106,8 +109,15 @@ const Home = () => {
         }
         break;
       case 3:
-        if (e.deltaY < 0) {
-          centerContainer.current?.scrollIntoView({ behavior: "smooth" });
+        if (e.deltaY > 0) {
+          projectContainer.current?.scrollIntoView({ behavior: "smooth" });
+          setLoading(true);
+          setOrder(4);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+        } else {
+          profileContainer.current?.scrollIntoView({ behavior: "smooth" });
           setLoading(true);
           setOrder(2);
           setTimeout(() => {
@@ -115,22 +125,35 @@ const Home = () => {
           }, 1000);
         }
         break;
+      case 4:
+        if (e.deltaY < 0) {
+          skillContainer.current?.scrollIntoView({ behavior: "smooth" });
+          setLoading(true);
+          setOrder(3);
+          setTimeout(() => {
+            setLoading(false);
+          }, 1000);
+        }
     }
   };
 
   const onClick = (state: string) => {
     switch (state) {
-      case "Header":
+      case "intro":
         headerContainer.current?.scrollIntoView({ behavior: "smooth" });
         setOrder(1);
         break;
-      case "Center":
-        centerContainer.current?.scrollIntoView({ behavior: "smooth" });
+      case "profile":
+        profileContainer.current?.scrollIntoView({ behavior: "smooth" });
         setOrder(2);
         break;
-      case "Footer":
-        footerContainer.current?.scrollIntoView({ behavior: "smooth" });
+      case "skill":
+        skillContainer.current?.scrollIntoView({ behavior: "smooth" });
         setOrder(3);
+        break;
+      case "project":
+        projectContainer.current?.scrollIntoView({ behavior: "smooth" });
+        setOrder(4);
         break;
     }
   };
@@ -138,7 +161,14 @@ const Home = () => {
   const navVars = {
     start: { x: 0 },
     end: {
-      x: order === 1 ? "-100%" : order === 2 ? 0 : "100%",
+      x:
+        order === 1
+          ? "-150%"
+          : order === 2
+          ? "-55%"
+          : order === 3
+          ? "55%"
+          : "150%",
       transition: { type: "spring", bounce: 0.1 },
     },
   };
@@ -154,10 +184,13 @@ const Home = () => {
         headerContainer.current?.scrollIntoView();
         break;
       case 2:
-        centerContainer.current?.scrollIntoView();
+        profileContainer.current?.scrollIntoView();
         break;
       case 3:
-        footerContainer.current?.scrollIntoView();
+        skillContainer.current?.scrollIntoView();
+        break;
+      case 4:
+        projectContainer.current?.scrollIntoView();
         break;
     }
   }, []);
@@ -165,19 +198,21 @@ const Home = () => {
   return (
     <>
       <NavContainer>
-        <Column onClick={() => onClick("Header")}>Header</Column>
-        <Column onClick={() => onClick("Center")}>Center</Column>
-        <Column onClick={() => onClick("Footer")}>Footer</Column>
+        <Column onClick={() => onClick("intro")}>Intro</Column>
+        <Column onClick={() => onClick("profile")}>Profile</Column>
+        <Column onClick={() => onClick("skill")}>Skill</Column>
+        <Column onClick={() => onClick("project")}>Project</Column>
         <Nav variants={navVars} initial="start" animate="end" />
       </NavContainer>
       <MainContainer>
         <Container ref={headerContainer}>
           <Header />
         </Container>
-        <Container ref={centerContainer}>
+        <Container ref={profileContainer}>
           <Profile order={order} />
         </Container>
-        <Container ref={footerContainer}>
+        <Container ref={skillContainer}></Container>
+        <Container ref={projectContainer}>
           <Profiles>
             <Link to="/project">
               <Project />
