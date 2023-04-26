@@ -70,38 +70,6 @@ const Text = styled.span`
   margin-left: 10px;
 `;
 
-const Rows = styled.div`
-  @media ${(props) => props.theme.media.mobile} {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-`;
-
-const Row = styled.div`
-  @media ${(props) => props.theme.media.mobile} {
-    mask-border: 10px;
-  }
-  margin-bottom: 20px;
-`;
-
-const Skills = styled.div`
-  display: flex;
-  margin-bottom: 5px;
-`;
-
-const Skill = styled.div<{ color: string }>`
-  @media ${(props) => props.theme.media.mobile} {
-    font-size: 12px;
-    padding: 3px 5px;
-    margin-right: 5px;
-  }
-  padding: 5px 7px;
-  margin-right: 7px;
-  border-radius: 5px;
-  color: #ffffff;
-  background-color: ${(props) => props.color};
-`;
-
 interface Prop {
   order: number;
 }
@@ -141,52 +109,6 @@ const Profile = ({ order }: Prop) => {
           <br />
           프론트엔드 개발자를 지향하고 있습니다.
         </Intro>
-      </Box>
-      <Box>
-        <Title>Skills</Title>
-        <Rows>
-          <Row>
-            <SubTitle>Frontend</SubTitle>
-            <Skills>
-              <Skill color="#E76F51">HTML</Skill>
-              <Skill color="#0077b6">CSS</Skill>
-              <Skill color="#ffb703">Javascript</Skill>
-            </Skills>
-            <Skills>
-              <Skill color="#0096c7">TypeScript</Skill>
-              <Skill color="#48cae4">React</Skill>
-              <Skill color="#333333">Next</Skill>
-            </Skills>
-            <Skills>
-              <Skill color="#0077b6">Recoil</Skill>
-              <Skill color="#2a9d8f">Tailwind CSS ...</Skill>
-            </Skills>
-          </Row>
-          <Row>
-            <SubTitle>Backend</SubTitle>
-            <Skills>
-              <Skill color="#6a994e">Node.js</Skill>
-              <Skill color="#333333">Express</Skill>
-            </Skills>
-            <Skills>
-              <Skill color="#386641">MongoDB</Skill>
-              <Skill color="#FB8500">Firebase...</Skill>
-            </Skills>
-          </Row>
-          <Row>
-            <SubTitle>Mobile</SubTitle>
-            <Skills>
-              <Skill color="#48cae4">React Native</Skill>
-            </Skills>
-          </Row>
-          <Row>
-            <SubTitle>Design</SubTitle>
-            <Skills>
-              <Skill color="#0077b6">Ps</Skill>
-              <Skill color="#ffb703">Ai</Skill>
-            </Skills>
-          </Row>
-        </Rows>
       </Box>
       <Box>
         <Items>

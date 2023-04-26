@@ -4,9 +4,10 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import Project from "../components/Project";
 import Profile from "../components/Profile";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { orderState } from "../atom";
+import Skill from "../components/Skills";
 
 const MainContainer = styled.div`
   margin: 0 auto;
@@ -211,7 +212,9 @@ const Home = () => {
         <Container ref={profileContainer}>
           <Profile order={order} />
         </Container>
-        <Container ref={skillContainer}></Container>
+        <Container ref={skillContainer}>
+          <Skill />
+        </Container>
         <Container ref={projectContainer}>
           <Profiles>
             <Link to="/project">
