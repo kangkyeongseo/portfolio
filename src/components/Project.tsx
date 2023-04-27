@@ -37,6 +37,10 @@ const Description = styled.p`
     font-size: 12px;
     line-height: 14px;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    line-height: 14px;
+  }
   font-size: 14px;
   font-weight: 300;
   line-height: 18px;
@@ -49,7 +53,7 @@ const Skills = styled.div`
 `;
 
 const Skill = styled.div<{ color: string }>`
-  @media ${(props) => props.theme.media.mobile} {
+  @media screen and (max-width: 767px) {
     font-size: 12px;
     padding: 3px 5px;
     margin-right: 5px;
