@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 const Container = styled.div`
   @media ${(props) => props.theme.media.desktop} {
-    max-width: 400px;
+    max-width: 350px;
   }
   @media ${(props) => props.theme.media.tablet} {
-    max-width: 350px;
+    max-width: 300px;
   }
   @media ${(props) => props.theme.media.mobile} {
     width: 300px;

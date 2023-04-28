@@ -15,13 +15,13 @@ const Container = styled(motion.div)`
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  align-items: center;
+  align-items: end;
 `;
 
 const Box = styled.div``;
 
 const Header = styled.div`
-  grid-column: 1 /4;
+  grid-column: 1 /3;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -39,28 +39,33 @@ const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border-left: 2px solid;
+  border-left: 3px solid;
   padding-left: 20px;
 `;
 
 const Title = styled.h2`
+  color: ${(props) => props.theme.color.darkGreen};
   font-size: 32px;
   font-weight: bold;
 `;
 
 const SubTitle = styled.h3`
   font-size: 20px;
-  margin-bottom: 5px;
 `;
 
 const Strong = styled.span`
-  padding: 2px 4px;
+  padding: 2px 7px;
   color: #ffffff;
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
+  background-color: ${(props) => props.theme.color.darkGreen};
+  border-radius: 14px;
 `;
 
 const Intro = styled.p`
+  @media ${(props) => props.theme.media.tablet} {
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 26px;
+  }
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -75,11 +80,21 @@ const Items = styled.div`
   margin-bottom: 15px;
 `;
 
-const Item = styled.div``;
+const ItemTitle = styled(SubTitle)`
+  color: ${(props) => props.theme.color.darkGreen};
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+`;
+
+const Item = styled.div`
+  font-size: 16px;
+`;
 
 const Text = styled.span`
   letter-spacing: 1px;
-  opacity: 0.6;
+  opacity: 0.7;
   margin-left: 10px;
 `;
 
@@ -120,29 +135,29 @@ const Profile = ({ order }: Prop) => {
           안녕하세요.
           <br />
           <br />
-          저는 웹을 웹디자이너로 일을 하며 처음으로 접했습니다.
+          저는 웹을 웹디자이너로 일하며 처음으로 접했습니다.
           <br />
-          사용자의 좋은 경험을 위해 디자인을 고민하던 중
+          <Strong>사용자의 좋은 경험</Strong> 을 위해 디자인을 고민하던 중
           <br />
-          웹을 직접 드려다보게 되면서 프로그래밍 언어와 만나게 되었습니다.
+          웹을 직접 들여다보게 되면서 프로그래밍 언어와 만나게 되었습니다.
           <br />
           <br />
           덕분에 웹을 개발하면서 항상 작은 부분도 사용자의
           <br />
-          <Strong>최적의 경험을 제공</Strong> 하기위해 노력할 수 있었습니다.
+          <Strong>최적의 경험을 제공</Strong> 하기 위해 노력할 수 있었습니다.
           <br />
           <br />
           앞으로도 <Strong>기본을 중요시하고</Strong> 다양한 시도를 통해 발전을
           꾀하며
           <br />
-          <Strong>사용자와 팀을 위한 일을 최우선</Strong>으로 생각하는
+          <Strong>사용자와 팀을 위한 일을 최우선</Strong> 으로 생각하는
           <br />
           프론트엔드 개발자를 지향하고 있습니다.
         </Intro>
       </Box>
       <Box>
         <Items>
-          <SubTitle>About me</SubTitle>
+          <ItemTitle>About me</ItemTitle>
           <Item>
             <FontAwesomeIcon icon={faUserAlt} />
             <Text>강경서</Text>
@@ -153,7 +168,7 @@ const Profile = ({ order }: Prop) => {
           </Item>
         </Items>
         <Items>
-          <SubTitle>Contact</SubTitle>
+          <ItemTitle>Contact</ItemTitle>
           <Item>
             <FontAwesomeIcon icon={faPhone} />
             <Text>010-6415-5062</Text>
@@ -164,7 +179,7 @@ const Profile = ({ order }: Prop) => {
           </Item>
         </Items>
         <Items>
-          <SubTitle>Channel</SubTitle>
+          <ItemTitle>Channel</ItemTitle>
           <LinkBox>
             <FontAwesomeIcon icon={faGithub} />
             <Link to={"/"}>Github</Link>

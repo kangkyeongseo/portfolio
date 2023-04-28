@@ -14,8 +14,16 @@ const media = {
   }px)`,
 };
 
+const color = {
+  green: "#2b9348",
+  darkGreen: "#007f5f",
+  lightGreen: "#55a630",
+  orange: "#fb5607",
+};
+
 const theme = {
   media,
+  color,
 };
 
 export default theme;
