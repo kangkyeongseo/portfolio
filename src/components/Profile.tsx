@@ -12,15 +12,37 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled(motion.div)`
+  @media ${(props) => props.theme.media.mobile} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr;
   align-items: end;
 `;
 
-const Box = styled.div``;
+const Body = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    margin-bottom: 20px;
+  }
+`;
+
+const Fotter = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+  }
+`;
 
 const Header = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    gap: 10px;
+    margin-bottom: 20px;
+  }
   grid-column: 1 /3;
   display: flex;
   align-items: center;
@@ -29,6 +51,10 @@ const Header = styled.div`
 `;
 
 const Thumbnail = styled.img`
+  @media ${(props) => props.theme.media.mobile} {
+    width: 100px;
+    height: 100px;
+  }
   width: 140px;
   height: 140px;
   object-fit: cover;
@@ -36,6 +62,9 @@ const Thumbnail = styled.img`
 `;
 
 const TitleBox = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    padding-left: 10px;
+  }
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -44,16 +73,25 @@ const TitleBox = styled.div`
 `;
 
 const Title = styled.h2`
+  @media ${(props) => props.theme.media.mobile} {
+    font-size: 22px;
+  }
   color: ${(props) => props.theme.color.darkGreen};
   font-size: 32px;
   font-weight: bold;
 `;
 
 const SubTitle = styled.h3`
+  @media ${(props) => props.theme.media.mobile} {
+    font-size: 13px;
+  }
   font-size: 20px;
 `;
 
 const Strong = styled.span`
+  @media ${(props) => props.theme.media.mobile} {
+    padding: 2px 5px;
+  }
   padding: 2px 7px;
   color: #ffffff;
   background-color: ${(props) => props.theme.color.darkGreen};
@@ -66,6 +104,11 @@ const Intro = styled.p`
     letter-spacing: 0;
     line-height: 26px;
   }
+  @media ${(props) => props.theme.media.mobile} {
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 20px;
+  }
   font-size: 18px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -73,9 +116,12 @@ const Intro = styled.p`
 `;
 
 const Items = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    margin-bottom: 10px;
+  }
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 3px;
   font-size: 18px;
   margin-bottom: 15px;
 `;
@@ -89,6 +135,9 @@ const ItemTitle = styled(SubTitle)`
 `;
 
 const Item = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    font-size: 12px;
+  }
   font-size: 16px;
 `;
 
@@ -99,6 +148,10 @@ const Text = styled.span`
 `;
 
 const LinkBox = styled.div`
+  @media ${(props) => props.theme.media.mobile} {
+    font-size: 12px;
+    padding: 5px;
+  }
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 10px;
   a {
@@ -130,7 +183,7 @@ const Profile = ({ order }: Prop) => {
           </SubTitle>
         </TitleBox>
       </Header>
-      <Box>
+      <Body>
         <Intro>
           안녕하세요.
           <br />
@@ -154,8 +207,8 @@ const Profile = ({ order }: Prop) => {
           <br />
           프론트엔드 개발자를 지향하고 있습니다.
         </Intro>
-      </Box>
-      <Box>
+      </Body>
+      <Fotter>
         <Items>
           <ItemTitle>About me</ItemTitle>
           <Item>
@@ -189,7 +242,7 @@ const Profile = ({ order }: Prop) => {
             <Link to={"/"}>Notion</Link>
           </LinkBox>
         </Items>
-      </Box>
+      </Fotter>
     </Container>
   );
 };
