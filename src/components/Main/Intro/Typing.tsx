@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const Container = styled.div``;
-
 const Text = styled.div`
   @media ${(props) => props.theme.media.mobile} {
     font-size: 24px;
@@ -25,17 +23,6 @@ const Bar = styled(motion.span)`
   background-color: #000000;
   transform: translateY(3px);
 `;
-
-const barVars = {
-  start: { opacity: 0 },
-  end: {
-    opacity: 1,
-    transition: {
-      repeat: Infinity,
-      duration: 0.6,
-    },
-  },
-};
 
 const Typing = () => {
   const textArray = [
@@ -95,13 +82,24 @@ const Typing = () => {
     };
   }, [show]);
 
+  const barVars = {
+    start: { opacity: 0 },
+    end: {
+      opacity: 1,
+      transition: {
+        repeat: Infinity,
+        duration: 0.6,
+      },
+    },
+  };
+
   return (
-    <Container>
+    <>
       <Text>
         {intro}
         <Bar variants={barVars} initial="start" animate="end" />
       </Text>
-    </Container>
+    </>
   );
 };
 
