@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export const orderState = atom({
-  key: "order",
+export const currentOrderState = atom({
+  key: "currentOrder",
   default: 1,
 });
