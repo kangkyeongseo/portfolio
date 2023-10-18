@@ -15,6 +15,7 @@ const media = {
 };
 
 const color = {
+  blue: "#3f72af",
   green: "#2b9348",
   darkGreen: "#007f5f",
   lightGreen: "#55a630",
@@ -24,6 +25,7 @@ const color = {
 const theme = {
   media,
   color,
+  shadow: "0 2px 4px 0 rgba(0, 0, 0, .13), 0 1px 1px 0 rgba(0, 0, 0, .11)",
 };
 
 export default theme;
