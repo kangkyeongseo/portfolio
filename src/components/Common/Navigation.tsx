@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { orderState } from "../../atom";
+import { currentOrderState } from "../../atom";
 
 const NavContainer = styled.div`
   z-index: 2;
@@ -9,6 +9,7 @@ const NavContainer = styled.div`
   top: 0;
   width: 100%;
   height: 60px;
+  background-color: #fff;
 `;
 
 const NavColumns = styled.div`
@@ -18,85 +19,55 @@ const NavColumns = styled.div`
   height: 100%;
 `;
 
-const NavColumn = styled.div<{ fontWeight: string }>`
+const NavColumn = styled.div`
   cursor: pointer;
   width: 25%;
   text-align: center;
-  font-weight: ${(props) => props.fontWeight};
 `;
 
 const NavBar = styled(motion.div)`
   position: absolute;
   bottom: 0;
-  width: calc(100% / 4);
-  height: 3px;
-  background-color: #000000;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: ${(props) => props.theme.color.blue};
+  transform-origin: 0%;
 `;
 
 const Navigation = () => {
-  const [order, setOrder] = useRecoilState(orderState);
+  const { scrollYProgress } = useScroll();
+  const [currentOrder, setCurrentOrder] = useRecoilState(currentOrderState);
   const onClick = (state: string) => {
     switch (state) {
       case "intro":
-        setOrder(1);
+        setCurrentOrder(1);
         break;
       case "profile":
-        setOrder(2);
+        setCurrentOrder(2);
         break;
       case "skill":
-        setOrder(3);
+        setCurrentOrder(3);
         break;
       case "project":
-        setOrder(4);
+        setCurrentOrder(4);
         break;
     }
   };
-
-  const navVars = {
-    start: { x: 0 },
-    end: {
-      x:
-        order === 1
-          ? "0"
-          : order === 2
-          ? "100%"
-          : order === 3
-          ? "200%"
-          : order === 4
-          ? "300%"
-          : 0,
-      transition: { type: "spring", bounce: 0.1 },
-    },
-  };
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   return (
     <NavContainer>
       <NavColumns>
-        <NavColumn
-          onClick={() => onClick("intro")}
-          fontWeight={order === 1 ? "bold" : "normal"}
-        >
-          Intro
-        </NavColumn>
-        <NavColumn
-          onClick={() => onClick("profile")}
-          fontWeight={order === 2 ? "bold" : "normal"}
-        >
-          Profile
-        </NavColumn>
-        <NavColumn
-          onClick={() => onClick("skill")}
-          fontWeight={order === 3 ? "bold" : "normal"}
-        >
-          Skill
-        </NavColumn>
-        <NavColumn
-          onClick={() => onClick("project")}
-          fontWeight={order === 4 ? "bold" : "normal"}
-        >
-          Project
-        </NavColumn>
-        <NavBar variants={navVars} initial="start" animate="end" />
+        <NavColumn onClick={() => onClick("intro")}>Intro</NavColumn>
+        <NavColumn onClick={() => onClick("profile")}>Profile</NavColumn>
+        <NavColumn onClick={() => onClick("skill")}>Skill</NavColumn>
+        <NavColumn onClick={() => onClick("project")}>Project</NavColumn>
+        <NavBar style={{ scaleX }} />
       </NavColumns>
     </NavContainer>
   );
