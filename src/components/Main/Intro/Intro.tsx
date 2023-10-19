@@ -4,7 +4,7 @@ import Typing from "./Typing";
 
 const Intro = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
-    <MainLayout ref={ref}>
+    <MainLayout ref={ref} order={1}>
       <Typing />
     </MainLayout>
   );
