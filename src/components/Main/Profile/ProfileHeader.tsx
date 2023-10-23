@@ -44,7 +44,7 @@ const Strong = styled.span`
 const ProfileHeader = () => {
   return (
     <Header>
-      <Thumbnail src="profile.png" />
+      <Thumbnail src={`${process.env.PUBLIC_URL}/profile.png`} />
       <Container>
         <TitleContainer>
           <Title>Profile</Title>
