@@ -6,8 +6,11 @@ const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/project/:id" element={<ProjectDetail />} />
+        <Route path={`${process.env.PUBLIC_URL}/`} element={<Home />} />
+        <Route
+          path={`${process.env.PUBLIC_URL}/project/:id`}
+          element={<ProjectDetail />}
+        />
       </Routes>
     </Router>
   );

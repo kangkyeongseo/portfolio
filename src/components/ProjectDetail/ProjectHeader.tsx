@@ -47,7 +47,7 @@ const ProjectHeader = () => {
   });
 
   const onBackBtnClick = () => {
-    navigate("/");
+    navigate(`${process.env.PUBLIC_URL}/`);
   };
 
   return (
