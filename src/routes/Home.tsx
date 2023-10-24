@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import Project from "../components/Main/Projects/Project";
 import { useRecoilState } from "recoil";
+import { Helmet } from "react-helmet";
 import { currentOrderState } from "../atom";
 import Navigation from "../components/Common/Navigation";
 import Intro from "../components/Main/Intro/Intro";
@@ -52,6 +52,9 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>프로트엔드 강경서</title>
+      </Helmet>
       <Navigation />
       <MainContainer>
         <Intro ref={introContainer} />

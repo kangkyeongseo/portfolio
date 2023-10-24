@@ -5,6 +5,7 @@ import { faTableColumns } from "@fortawesome/free-solid-svg-icons";
 import ProjectHeader from "../components/ProjectDetail/ProjectHeader";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 interface Project {
   id: number;
@@ -361,6 +362,9 @@ const ProjectDetail = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{project?.title}</title>
+      </Helmet>
       <ProjectHeader />
       {project && (
         <Container>
